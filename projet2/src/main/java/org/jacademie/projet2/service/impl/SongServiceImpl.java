@@ -29,4 +29,13 @@ public class SongServiceImpl implements SongService{
 		
 	}
 
+	@Override
+	public void createNewSong(Chanson song) throws Exception {
+		
+		logger.info( "Retrieving all songs ..." );
+		
+		this.songsDao.createNewSong( song );
+		
+	}
+
 }

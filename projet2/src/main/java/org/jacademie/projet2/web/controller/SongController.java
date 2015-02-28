@@ -24,7 +24,7 @@ public class SongController {
 	@Autowired
 	private SongService songService;
 	
-	@RequestMapping(value = "/Songs", method = RequestMethod.GET)
+	@RequestMapping( value = "/Songs", method = RequestMethod.GET )
     public String displaySongs(Model model) throws Exception {
 
 		logger.info("In displaySongs (Controller)");
@@ -40,4 +40,15 @@ public class SongController {
 		return "songs";
     }
 	
+	@RequestMapping(value = "/songForm", method = RequestMethod.GET)
+	public String sendSong(Model model) throws Exception {
+	      
+		Chanson song = new Chanson();
+		
+		model.addAttribute("command", song);
+		
+		return "songForm";
+		
+	}
+		
 }

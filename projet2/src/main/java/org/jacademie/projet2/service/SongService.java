@@ -7,5 +7,7 @@ import org.jacademie.projet2.domain.Chanson;
 public interface SongService {
 	
 	public 	List<Chanson> retrieveAllSongs() 			throws Exception;
+	
+	public 	void createNewSong( Chanson song ) 			throws Exception;
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.jacademie.projet2.dao.SongsDao;
 import org.jacademie.projet2.domain.Chanson;
@@ -32,6 +33,25 @@ public class SongsDaoImpl implements SongsDao {
 		logger.info("Albums retrieved : " + result.size());
 		
 		return result;
+	}
+	
+	@Override
+	public void createNewSong(Chanson song) throws Exception {
+		
+		logger.info("Created a new song ...");
+		
+		Session session = this.sessionFactory.openSession();
+		
+		session.beginTransaction();
+		
+		session.persist( song );
+		
+		session.getTransaction().commit();
+		
+		session.close();
+		
+		logger.info("New song created...");
+		
 	}
 
 }
