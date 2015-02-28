@@ -70,7 +70,7 @@ public class AlbumDaoImpl implements AlbumDao {
 		
 		List<Album> result = new ArrayList<Album>();
 
-		result = this.sessionFactory.getCurrentSession().createCriteria(Album.class).list();
+		result = this.sessionFactory.openSession().createCriteria(Album.class).list();
 
 		logger.info("Albums retrieved : " + result.size());
 
