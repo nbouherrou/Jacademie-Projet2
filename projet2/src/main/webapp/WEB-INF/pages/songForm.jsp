@@ -11,8 +11,22 @@
 </head>
 <body>
 	
+	<!-- url to reach the page : http://localhost:8080/projet2/SongForm.do -->
+	
 	<form:form method="POST" action="${pageContext.request.contextPath}/AddSong.do">
 	   <table>
+	   		<tr>
+		        <td><form:label path="chansonID.idChanson">id chanson</form:label></td>
+		        <td><form:input path="chansonID.idChanson" type="text" value="9"/></td>
+		    </tr>
+		    <tr>
+		        <td><form:label path="chansonID.albumID.idAlbum">album id</form:label></td>
+		        <td><form:input path="chansonID.albumID.idAlbum" type="text" value="8"/></td>
+		    </tr>
+		    <tr>
+		        <td><form:label path="chansonID.albumID.idArtiste">album id</form:label></td>
+		        <td><form:input path="chansonID.albumID.idArtiste" type="text" value="7"/></td>
+		    </tr>
 		    <tr>
 		        <td><form:label path="titre">titre</form:label></td>
 		        <td><form:input path="titre" type="text" value="salut"/></td>

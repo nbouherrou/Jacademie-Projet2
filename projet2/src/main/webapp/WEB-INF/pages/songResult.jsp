@@ -14,6 +14,18 @@
 	
 	<h2>Submitted Song Information</h2>
    <table>
+   		<tr>
+	        <td>song's id : </td>
+	        <td>${idChanson}</td>
+	    </tr>
+	    <tr>
+	        <td>song's album id : </td>
+	        <td>${idAlbum}</td>
+	    </tr>
+	    <tr>
+	        <td>song's artiste id : </td>
+	        <td>${idArtiste}</td>
+	    </tr>
 	    <tr>
 	        <td>song's title : </td>
 	        <td>${titre}</td>

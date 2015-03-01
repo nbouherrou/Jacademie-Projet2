@@ -55,7 +55,13 @@ public class SongController {
 	public String addStudent(@Valid @ModelAttribute("Chanson") Chanson song, BindingResult result, ModelMap model) {
 	      
 		logger.info( "form control reached !" );
-	      
+	    
+		model.addAttribute("idChanson", 	song.getChansonID().getIdChanson());
+		
+		model.addAttribute("idAlbum", 		song.getChansonID().getAlbumID().getIdAlbum());
+		
+		model.addAttribute("idArtiste", 	song.getChansonID().getAlbumID().getIdArtiste());
+		
 		model.addAttribute("titre", 		song.getTitre());
 	      
 		model.addAttribute("dureeChanson", 	song.getDureeChanson());
