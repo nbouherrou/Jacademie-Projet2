@@ -37,8 +37,6 @@ public class SongController {
 		
 		List<Chanson> songs = this.songService.retrieveAllSongs();
 		
-		// albums.forEach(e -> logger.info(e));
-		
 		model.addAttribute("songs", songs);
 
 		logger.info("Out displaySongs (Controller)");

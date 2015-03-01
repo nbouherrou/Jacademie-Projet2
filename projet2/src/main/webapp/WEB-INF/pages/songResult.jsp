@@ -12,7 +12,7 @@
 	
 	<p>Hello World</p>
 	
-	<h2>Submitted Student Information</h2>
+	<h2>Submitted Song Information</h2>
    <table>
 	    <tr>
 	        <td>song's title : </td>
