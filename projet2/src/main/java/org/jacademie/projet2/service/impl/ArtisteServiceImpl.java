@@ -45,4 +45,12 @@ public class ArtisteServiceImpl implements ArtisteService {
 		return list;
 	}
 
+	@Override
+	@Transactional(readOnly=true)
+	public Artiste findArtisteById(int id) throws Exception {
+		
+		return this.artisteDao.findArtisteById(id);
+		
+	}
+
 }

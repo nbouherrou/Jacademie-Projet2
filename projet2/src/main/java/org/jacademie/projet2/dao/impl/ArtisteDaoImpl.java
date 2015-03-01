@@ -39,5 +39,25 @@ public class ArtisteDaoImpl implements ArtisteDao {
 		return result;
 	}
 
+	@Override
+	public Artiste findArtisteById(int id) throws Exception {
+		
+		logger.info("Finding Artiste with id : " + id + "...");
+		 
+		Artiste result = (Artiste) this.sessionFactory.getCurrentSession().get(Artiste.class, id);
+ 
+		if (result != null) {
+ 
+			logger.info("Artiste found : " + result);
+			
+		} else {
+			
+			logger.info("Artiste not found");
+			
+		}
+ 
+		return result;
+	}
+
 	
 }
