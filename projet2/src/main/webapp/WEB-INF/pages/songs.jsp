@@ -18,7 +18,19 @@
 		</tr>
 		<c:forEach var="song" items="${songs}">
 			<tr>
+				<td><c:out value="${song.chansonID.idChanson}" /></td>
+			</tr>
+			<tr>
+				<td><c:out value="${song.chansonID.albumID.idAlbum}" /></td>
+			</tr>
+			<tr>
+				<td><c:out value="${song.chansonID.albumID.idArtiste}" /></td>
+			</tr>
+			<tr>
 				<td><c:out value="${song.titre}" /></td>
+			</tr>
+			<tr>
+				<td><c:out value="${song.dureeChanson}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
