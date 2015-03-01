@@ -36,7 +36,6 @@ public class Artiste implements java.io.Serializable {
 	 */
 	@Id
 	@Column(name = "ARTISTE_ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idArtiste;
 
 	/**

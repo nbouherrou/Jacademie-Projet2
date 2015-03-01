@@ -47,6 +47,10 @@
 												data-toggle="validator">
 												<fieldset>
 													<div class="form-group">
+														<label class="control-label">Code artiste : </label> <input
+															class="form-control" placeholder="code artiste" name="codeArtiste"
+															type="text" data-delay="10" required>
+														<div class="help-block with-errors"></div>
 														<label class="control-label">Nom de l'artiste : </label> <input
 															class="form-control" placeholder="Name" name="name"
 															type="text" data-delay="10" required>

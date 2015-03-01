@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -33,12 +34,14 @@ public class ArtisteController {
     }
 	
 	@RequestMapping(value ="/registerArtiste", method = RequestMethod.POST)
-    public ModelAndView submitFormArtiste(@ModelAttribute(value="name") String artiste) {
+    public ModelAndView submitFormArtiste(@RequestParam("codeArtiste") String codeArtiste, @RequestParam("name") String artiste) {
 		
-		logger.info("Artiste POST : " + artiste.toString());
+		logger.info("Artiste POST : " + codeArtiste.toString() + "  "+ artiste.toString() );
+		
 		
 		Artiste art = new Artiste();
 		art.setNom(artiste);
+		art.setIdArtiste(Integer.parseInt(codeArtiste));
 	
 		try {
 			
@@ -50,11 +53,10 @@ public class ArtisteController {
 		}
 		
 		return new ModelAndView("redirect:Artistes.do");
-		
 	}
 	
 	@RequestMapping(value = "/deleteArtiste", method = RequestMethod.GET)
-    public ModelAndView deleteArtiste(@ModelAttribute(value="id") Integer id) {
+    public ModelAndView deleteArtiste(@RequestParam(value="id") Integer id) {
 		
 		logger.info("In deleteArtiste (Controller)");
 		
