@@ -11,19 +11,15 @@
 </head>
 <body>
 	
-	<form:form method="POST" action="/addSong">
+	<form:form method="POST" action="${pageContext.request.contextPath}/AddSong.do">
 	   <table>
 		    <tr>
-		        <td><form:label path="chansonID">chansonID</form:label></td>
-		        <td><form:input path="chansonID" type="text" value="Harry"/></td>
-		    </tr>
-		    <tr>
 		        <td><form:label path="titre">titre</form:label></td>
-		        <td><form:input path="titre" type="text" value="Harry"/></td>
+		        <td><form:input path="titre" type="text" value="salut"/></td>
 		    </tr>
 		    <tr>
-		        <td><form:label path="dureeChanson">dureeChanson</form:label></td>
-		        <td><form:input path="dureeChanson" type="text" value="Harry"/></td>
+		        <td><form:label path="dureeChanson">3</form:label></td>
+		        <td><form:input path="dureeChanson" type="text" value='3' /></td>
 		    </tr>
 		    <tr>
 		        <td colspan="2">
