@@ -10,9 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jacademie.projet2.domain.Chanson;
 import org.jacademie.projet2.service.SongService;
+import org.jacademie.projet2.service.impl.SongServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-// import org.jacademie.projet2.domain.Album;
-// import org.jacademie.projet2.service.AlbumService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -51,6 +50,13 @@ public class SongController {
 		
 	}
 	
+	@RequestMapping(value = "/SongFormCreation", method = RequestMethod.GET)
+	public ModelAndView sendBlankSong( ) throws Exception {
+	     
+		return new ModelAndView( "songFormCreation", "command", new Chanson() );
+		
+	}
+	
 	@RequestMapping(value = "/AddSong", method = RequestMethod.POST)
 	public String addStudent(@Valid @ModelAttribute("Chanson") Chanson song, BindingResult result, ModelMap model) {
 	      
@@ -69,6 +75,43 @@ public class SongController {
 		logger.info( "form control treated !" );
 		
 		return "songResult";
+		
+	}
+	
+	@RequestMapping(value = "/CreateNewSong", method = RequestMethod.POST)
+	public String createNewSong(@Valid @ModelAttribute("Chanson") Chanson song, BindingResult result, ModelMap model) {
+	      
+		logger.info( "form control reached !" );
+	    
+		model.addAttribute("idChanson", 	song.getChansonID().getIdChanson());
+		
+		model.addAttribute("idAlbum", 		song.getChansonID().getAlbumID().getIdAlbum());
+		
+		model.addAttribute("idArtiste", 	song.getChansonID().getAlbumID().getIdArtiste());
+		
+		model.addAttribute("titre", 		song.getTitre());
+	      
+		model.addAttribute("dureeChanson", 	song.getDureeChanson());
+	    
+		SongServiceImpl songServiceImpl = new SongServiceImpl();
+		
+		try {
+			
+			logger.info( "song persisting ..." );
+			
+			songServiceImpl.createNewSong( song );
+			
+			logger.info( "song persisted !" );
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		logger.info( "form control treated !" );
+		
+		return "songResultCreation";
 		
 	}
 		

@@ -84,21 +84,21 @@ public class Chanson implements java.io.Serializable {
 		this.album = album;
 	}
 	
-	public Chanson(String titre, Integer dureeChanson ) {
+	public Chanson( ChansonId chansonID, String titre, Integer dureeChanson ) {
 
 		super();
 
-		this.chansonID = null;
+		this.chansonID = chansonID;
 
 		this.titre = titre;
 
 		this.dureeChanson = dureeChanson;
 		
-		this.album = null;
+		this.album = new Album();
 		
 	}
 
-
+	
 	/**
 	 * Constructeur sans parametres de la classe Chanson.
 	 */

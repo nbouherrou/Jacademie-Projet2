@@ -5,8 +5,8 @@ import org.jacademie.projet2.domain.Chanson;
 
 public interface SongsDao {
 	
-	public 	List<Chanson> retrieveAllSongs() 		throws Exception;
+	public 	List<Chanson> retrieveAllSongs() 						throws Exception;
 	
-	public 	void createNewSong( Chanson song ) 		throws Exception;
+	public 	void createNewSong( Chanson song ) 						throws Exception;
 
 }
