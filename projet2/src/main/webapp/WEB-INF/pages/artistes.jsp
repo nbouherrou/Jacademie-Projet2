@@ -36,14 +36,14 @@
 
 						<div class="container">
 							<div class="row">
-								<div class="col-md-4 col-md-offset-3">
+								<div class="col-lg-4 col-lg-offset-3">
 									<div class="login-panel panel panel-default">
 										<div class="panel-heading">
 											<h3 class="panel-title">Inscription Artiste</h3>
 										</div>
 										<div class="panel-body">
 
-											<form role="form" action="signin" method="POST"
+											<form role="form" modelAttribute="artiste" action="registerArtiste.do" method="POST"
 												data-toggle="validator">
 												<fieldset>
 													<div class="form-group">
@@ -78,6 +78,8 @@
 								<tr>
 									<th>#ID</th>
 									<th>Artistes</th>
+									<th>Editer</th>
+									<th>Supprimer</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -87,8 +89,9 @@
 									%>
 									<tr>
 										<td><%=i%></td>
-										<td><c:out value="${artistes.nom}" /></td>
-
+										<td><a href="/Albums.do"><c:out value="${artistes.nom}" /></a></td>
+										<td><i class="fa fa-pencil-square-o"></i></td>
+										<td><i class="fa fa-times"></i></td>
 									</tr>
 								</c:forEach>
 							</tbody>
