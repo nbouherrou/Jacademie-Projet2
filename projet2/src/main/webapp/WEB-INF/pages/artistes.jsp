@@ -43,7 +43,7 @@
 										</div>
 										<div class="panel-body">
 
-											<form role="form" modelAttribute="artiste" action="registerArtiste.do" method="POST"
+											<form role="form" name="artiste" action="registerArtiste.do" method="POST"
 												data-toggle="validator">
 												<fieldset>
 													<div class="form-group">
@@ -91,7 +91,7 @@
 										<td><%=i%></td>
 										<td><a href="Albums?id=${artistes.idArtiste}"><c:out value="${artistes.nom}" /></a></td>
 										<td><i class="fa fa-pencil-square-o"></i></td>
-										<td><i class="fa fa-times"></i></td>
+										<td><a href="deleteArtiste?id=${artistes.idArtiste}"><i class="fa fa-times"></i></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

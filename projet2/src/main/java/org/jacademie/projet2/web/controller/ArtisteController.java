@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ArtisteController {
@@ -31,12 +32,44 @@ public class ArtisteController {
 		return "artistes";
     }
 	
-	@RequestMapping(value ="/registerArtiste", method = RequestMethod.GET)
-    public String submitFormArtiste(@ModelAttribute(value="artiste") Artiste artiste ) {
+	@RequestMapping(value ="/registerArtiste", method = RequestMethod.POST)
+    public ModelAndView submitFormArtiste(@ModelAttribute(value="name") String artiste) {
 		
+		logger.info("Artiste POST : " + artiste.toString());
 		
+		Artiste art = new Artiste();
+		art.setNom(artiste);
+	
+		try {
+			
+			this.artisteService.createArtiste(art);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		return null;
+		return new ModelAndView("redirect:Artistes.do");
+		
+	}
+	
+	@RequestMapping(value = "/deleteArtiste", method = RequestMethod.GET)
+    public ModelAndView deleteArtiste(@ModelAttribute(value="id") Integer id) {
+		
+		logger.info("In deleteArtiste (Controller)");
+		
+		try {
+			
+			this.artisteService.deleteArtisteById(id);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		logger.info("Out deleteArtiste (Controller)");
+		
+		return new ModelAndView("redirect:Artistes.do");
 	}
 	
 	

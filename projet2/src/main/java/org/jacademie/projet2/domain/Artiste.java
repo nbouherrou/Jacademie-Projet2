@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -34,6 +36,7 @@ public class Artiste implements java.io.Serializable {
 	 */
 	@Id
 	@Column(name = "ARTISTE_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idArtiste;
 
 	/**

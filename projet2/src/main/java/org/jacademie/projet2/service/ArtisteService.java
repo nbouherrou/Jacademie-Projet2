@@ -17,5 +17,19 @@ public interface ArtisteService {
 	 */
 	public Artiste findArtisteById(int id) throws Exception;
 	
+	
+	/**
+	 * Persiste un Artiste en BDD.
+	 * 
+	 * @param 	Artiste		artiste		: objet Artiste
+	 * @throws 	Exception
+	 */
+	public void createArtiste(Artiste artiste) throws Exception;
 
+	/**
+	 * Efface l'artiste en BDD.
+	 * 
+	 * @throws Exception
+	 */
+	public void deleteArtisteById(Integer id) throws Exception;
 }

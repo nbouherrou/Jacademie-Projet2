@@ -12,6 +12,7 @@ import org.jacademie.projet2.domain.Artiste;
 import org.jacademie.projet2.service.ArtisteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -51,6 +52,21 @@ public class ArtisteServiceImpl implements ArtisteService {
 		
 		return this.artisteDao.findArtisteById(id);
 		
+	}
+
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
+	public void createArtiste(Artiste artiste) throws Exception {
+		
+		this.artisteDao.createArtiste(artiste);
+	}
+	
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
+	public void deleteArtisteById(Integer id) throws Exception {
+		
+		this.artisteDao.deleteArtisteById(id);
+ 
 	}
 
 }
