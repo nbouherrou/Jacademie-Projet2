@@ -89,7 +89,7 @@
 									%>
 									<tr>
 										<td><%=i%></td>
-										<td><a href="/Albums.do"><c:out value="${artistes.nom}" /></a></td>
+										<td><a href="Albums?id=${artistes.idArtiste}"><c:out value="${artistes.nom}" /></a></td>
 										<td><i class="fa fa-pencil-square-o"></i></td>
 										<td><i class="fa fa-times"></i></td>
 									</tr>
