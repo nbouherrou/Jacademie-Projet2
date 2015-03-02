@@ -72,7 +72,7 @@ public class ArtisteDaoImpl implements ArtisteDao {
 
 		logger.info("Creating artiste : " + artiste + "...");
 		
-		this.sessionFactory.openSession().save(artiste);
+		this.sessionFactory.openSession().persist(artiste);
 
 		logger.info("Artiste created. \n");
 

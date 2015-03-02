@@ -28,6 +28,8 @@ public class ArtisteController {
 		
 		model.addAttribute("artistes", this.artisteService.retrieveAllArtistes());
 		
+		this.artisteService.retrieveAllArtistes().forEach(e -> logger.info(e));
+		
 		logger.info("Out displayArtistes (Controller)");
 		
 		return "artistes";
