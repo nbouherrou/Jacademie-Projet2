@@ -22,7 +22,7 @@
 	</bean>
 
 	<bean id="sessionFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
@@ -37,12 +37,12 @@
 			<props>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
 		</property>
 	</bean>
 	
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 	    <property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
