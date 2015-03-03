@@ -7,6 +7,7 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.jacademie.projet2.dao.ArtisteDao;
@@ -26,8 +27,10 @@ public class ArtisteDaoImpl implements ArtisteDao {
 	public Set<Artiste> retrieveAllArtistes() {
 
 		logger.info("In retrieveAllArtistes (DAO)");
+		
+		Session session = this.sessionFactory.openSession();
 
-		Criteria criteria = this.sessionFactory.openSession().createCriteria(
+		Criteria criteria = session.createCriteria(
 				Artiste.class);
 
 		@SuppressWarnings("unchecked")
@@ -36,6 +39,8 @@ public class ArtisteDaoImpl implements ArtisteDao {
 		Set<Artiste> result = new HashSet<Artiste>(list);
 
 		logger.info("Out retrieveAllArtistes (DAO)");
+		
+		session.close();
 
 		return result;
 	}
@@ -45,7 +50,9 @@ public class ArtisteDaoImpl implements ArtisteDao {
 
 		logger.info("Finding Artiste with id : " + codeArtiste + "...");
 		
-		Criteria criteria = this.sessionFactory.openSession().createCriteria(Artiste.class);
+		Session session = this.sessionFactory.openSession();
+		
+		Criteria criteria = session.createCriteria(Artiste.class);
 		
 		criteria.add(Restrictions.eq("idArtiste", codeArtiste));
 		
@@ -62,6 +69,8 @@ public class ArtisteDaoImpl implements ArtisteDao {
 			logger.info("Artiste not found");
 
 		}
+		
+		session.close();
 
 		return result;
 	}
@@ -77,8 +86,12 @@ public class ArtisteDaoImpl implements ArtisteDao {
 	public void createArtiste(Artiste artiste) throws Exception {
 
 		logger.info("Creating artiste : " + artiste + "...");
+
+		Session session = this.sessionFactory.openSession();
 		
-		this.sessionFactory.openSession().save(artiste);
+		session.save(artiste);
+		
+		session.close();
 
 		logger.info("Artiste created. \n");
 

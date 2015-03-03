@@ -16,17 +16,6 @@
 </head>
 <body>
 
-	<table>
-		<tr>
-			<th>Albums</th>
-		</tr>
-		<c:forEach var="album" items="${albums}">
-			<tr>
-				<td><c:out value="${album.nom}" /></td>
-			</tr>
-		</c:forEach>
-	</table>
-
 	<!-- Navigation -->
 		<jsp:include page="navigation.jsp" />
 
@@ -49,19 +38,26 @@
 											<fieldset>
 												<div class="form-group">
 													
-													<form:label class="control-label" path="albumID.idArtiste">id artiste</form:label>
-											        <form:input path="albumID.idArtiste" type="text" value="${id}"/>
+													<form:label class="control-label" path="albumID.idArtiste">Id artiste</form:label>
+											        <form:input class="form-control" path="albumID.idArtiste" type="text" value="${id}"/>
+											        
+											        <br>
 												
-											        <form:label class="control-label" path="albumID.idAlbum">id album</form:label>
-											        <form:input path="albumID.idAlbum" type="text" placeholder="code album"/>
+											        <form:label class="control-label" path="albumID.idAlbum">Code Album</form:label>
+											        <form:input class="form-control" path="albumID.idAlbum" type="text" placeholder="code album"/>
+											        
+											        <br>
 											    
-											        <form:label path="nom">titre album</form:label>
-											        <form:input path="nom" type="text" placeholder="titre album"/>
+											        <form:label class="control-label" path="nom">Titre album</form:label>
+											        <form:input class="form-control" path="nom" type="text" placeholder="titre album"/>
+											        
+											        <br>
+											  	</div>
 											    
-												    <div class="form-group">
-														<input type="submit" value="Submit"/>
-													</div>
+												<div class="form-group">
+													<input type="submit" value="Submit" class="btn btn-lg btn-success btn-block"/>
 												</div>
+		
 											</fieldset> 
 										</form:form>
 																						
@@ -76,16 +72,19 @@
 						<table class="table table-hover" id="bootstrap-table">
 							<thead>
 								<tr>
-									<th>#ID album</th>
-									<th>nom</th>
+									<th>Code Album</th>
+									<th>Nom Album</th>
 								</tr>
 							</thead>
 							
 							<tbody>
 								<c:forEach var="album" items="${albums}">
 									<tr>
-										<td><c:out value="${album.nom}" /></td>
-										<td><a href=""><i class="fa fa-times"></i></a></td>
+										<td><c:out value="${album.albumID.idAlbum}" /></td>
+										<td>
+											<!-- a href="Songs.do?codeArtiste=${album.albumID.idArtiste}&codeAlbum=${album.albumID.idAlbum}"-->
+											<c:out value="${album.nom}" />
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>

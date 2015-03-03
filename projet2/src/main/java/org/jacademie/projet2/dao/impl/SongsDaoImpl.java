@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.jacademie.projet2.dao.SongsDao;
 import org.jacademie.projet2.domain.Chanson;
@@ -27,9 +28,13 @@ public class SongsDaoImpl implements SongsDao {
 		
 		List<Chanson> result = new ArrayList<Chanson>();
 		
-		result = this.sessionFactory.openSession().createCriteria(Chanson.class).list();
+		Session session = this.sessionFactory.openSession();
+		
+		result = session.createCriteria(Chanson.class).list();
 		
 		logger.info("Albums retrieved : " + result.size());
+		
+		session.close();
 		
 		return result;
 	}
@@ -39,17 +44,14 @@ public class SongsDaoImpl implements SongsDao {
 		
 		logger.info("Creating a new song " + song.getTitre() + " in dao...");
 		
-//		if ( this.sessionFactory == null ) {
-//			
-//			logger.info( "The session factory is null !" );
-//			
-//		} else {
-			
-			this.sessionFactory.openSession().save( song );
-			
-			logger.info("New song created in dao !");
-			
-//		}
+		Session session = this.sessionFactory.openSession();
+
+		session.save(song);
+
+		logger.info("New song created in dao !");
+
+		session.close();
+
 		
 	}
 

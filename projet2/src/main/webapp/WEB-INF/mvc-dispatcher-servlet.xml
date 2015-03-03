@@ -35,6 +35,7 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
+				<prop key="connection.pool_size">10</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
