@@ -25,7 +25,7 @@ public class AlbumDaoImpl implements AlbumDao {
 
 		logger.info("Creating Album : " + album + "...");
 
-		this.sessionFactory.getCurrentSession().save(album);
+		this.sessionFactory.openSession().save(album);
 
 		logger.info("Album created. \n");
 	}

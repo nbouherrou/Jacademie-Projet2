@@ -28,6 +28,8 @@ public class SongController {
 
 	@Autowired
 	private SongService songService;
+
+	// http://localhost:8080/projet2/Songs.do
 	
 	@RequestMapping( value = "/Songs", method = RequestMethod.GET )
     public String displaySongs(Model model) throws Exception {
@@ -42,6 +44,8 @@ public class SongController {
 		
 		return "songs";
     }
+
+	// http://localhost:8080/projet2/SongForm.do
 	
 	@RequestMapping(value = "/SongForm", method = RequestMethod.GET)
 	public ModelAndView sendSong( ) throws Exception {
@@ -56,6 +60,8 @@ public class SongController {
 		return new ModelAndView( "songFormCreation", "command", new Chanson() );
 		
 	}
+
+	// http://localhost:8080/projet2/AddSong.do
 	
 	@RequestMapping(value = "/AddSong", method = RequestMethod.POST)
 	public String addStudent(@Valid @ModelAttribute("Chanson") Chanson song, BindingResult result, ModelMap model) {
@@ -77,6 +83,8 @@ public class SongController {
 		return "songResult";
 		
 	}
+	
+	// http://localhost:8080/projet2/CreateNewSong.do
 	
 	@RequestMapping(value = "/CreateNewSong", method = RequestMethod.POST)
 	public String createNewSong(@Valid @ModelAttribute("Chanson") Chanson song, BindingResult result, ModelMap model) {
