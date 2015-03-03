@@ -50,17 +50,13 @@ public class AlbumController {
     }
 	
 	@RequestMapping(value = "/Albums", method = RequestMethod.GET)
-	// public ModelAndView sendSong( @RequestParam("id") Integer id, Model model ) throws Exception {
-	
 	public String sendSong( @RequestParam("id") Integer id, Model model ) throws Exception {
 	     
 		model.addAttribute( "id", id );
 		
 		model.addAttribute( "Album", new Album() );
 		
-		// return new ModelAndView( "albums", "command", new Album() );
-		
-		// return new ModelAndView( "albums", "command", new Album() );
+		model.addAttribute( "albums", albumService.findAlbumsByCodeArtiste(id) );
 		
 		return "albums";
 		
@@ -81,7 +77,7 @@ public class AlbumController {
 			
 			logger.info( "album persisted ! " );
 			
-			model.addAttribute( "albums", this.albumService.retrieveAllAlbums() );
+			model.addAttribute( "albums", albumService.findAlbumsByCodeArtiste(album.getAlbumID().getIdArtiste()) );
 			
 		} catch (Exception e) {
 			
@@ -95,7 +91,6 @@ public class AlbumController {
 	}
 	
 	@RequestMapping(value = "/Albums2", method = RequestMethod.GET)
-    // public String displayArtisteAlbums(@RequestParam("id") Integer id, Model model) throws Exception {
 	public String displayArtisteAlbums( Model model ) throws Exception {
 
 		logger.info("In displayArtisteAlbums (Controller)");
@@ -103,14 +98,6 @@ public class AlbumController {
 		List<Album> albums = this.albumService.retrieveAllAlbums();
 		
 		model.addAttribute("albums", albums);
-		
-		// logger.info("Artiste id = " + id);
-		
-		// Artiste artiste = artisteService.findArtisteById(id);
-		
-		// model.addAttribute("albums", artiste.getAlbums());
-		
-		// artiste.getAlbums().forEach(e -> logger.info(e));
 
 		logger.info("Out displayArtisteAlbums (Controller)");
 		

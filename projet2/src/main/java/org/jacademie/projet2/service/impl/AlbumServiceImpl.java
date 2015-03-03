@@ -60,4 +60,11 @@ public class AlbumServiceImpl implements AlbumService{
 		
 	}
 
+	@Override
+	public List<Album> findAlbumsByCodeArtiste(Integer codeArtiste)
+			throws Exception {
+			
+		return this.albumDao.findAlbumsByCodeArtiste(codeArtiste);
+	}
+
 }

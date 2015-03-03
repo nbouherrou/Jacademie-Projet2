@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.jacademie.projet2.dao.AlbumDao;
 import org.jacademie.projet2.domain.Album;
 import org.jacademie.projet2.domain.AlbumId;
+import org.jacademie.projet2.domain.Artiste;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -24,8 +28,12 @@ public class AlbumDaoImpl implements AlbumDao {
 	public void createAlbum(Album album) throws Exception {
 
 		logger.info("Creating Album : " + album + "...");
+		
+		Session session = this.sessionFactory.openSession();
 
-		this.sessionFactory.openSession().save(album);
+		session.save(album);
+		
+		session.close();
 
 		logger.info("Album created. \n");
 	}
@@ -69,10 +77,14 @@ public class AlbumDaoImpl implements AlbumDao {
 		logger.info("Retrieving all Albums ...");
 		
 		List<Album> result = new ArrayList<Album>();
+		
+		Session session = this.sessionFactory.openSession();
 
-		result = this.sessionFactory.openSession().createCriteria(Album.class).list();
+		result = session.createCriteria(Album.class).list();
 
-		logger.info("Albums retrieved : " + result.size());
+		logger.info("Albums : " + result);
+		
+		session.close();
 
 		return result;
 	}
@@ -90,6 +102,38 @@ public class AlbumDaoImpl implements AlbumDao {
 		});
 		
 		logger.info("Albums deleted ");
+
+	}
+
+
+	@Override
+	public List<Album> findAlbumsByCodeArtiste(Integer codeArtiste) throws Exception {
+		
+		logger.info("Finding Albums with codeArtiste : " + codeArtiste + "...");
+		
+		Session session = this.sessionFactory.openSession();
+		
+		Criteria criteria = session.createCriteria(Album.class);
+		
+		criteria.add(Restrictions.eq("albumID.idArtiste", codeArtiste));
+		
+		List<Album> result = criteria.list();
+		
+		logger.info("findAlbumsByCodeArtiste Result : " + result);
+
+		if (result != null) {
+
+			logger.info("Albums found : " + result);
+
+		} else {
+
+			logger.info("Albums not found");
+
+		}
+		
+		session.close();
+
+		return result;
 
 	}
 

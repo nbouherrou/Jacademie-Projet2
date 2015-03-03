@@ -9,6 +9,8 @@ public interface AlbumDao {
 	
 	public 	void 		createAlbum(Album album) 		throws Exception;
 	
+	public 	List<Album> findAlbumsByCodeArtiste(Integer codeArtiste) 	throws Exception;
+	
 	public 	Album 		findAlbumById(AlbumId albumID) 	throws Exception;
 	
 	public 	void 		updateAlbum(Album album) 		throws Exception;
