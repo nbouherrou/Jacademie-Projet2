@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.jacademie.projet2.dao.ArtisteDao;
 import org.jacademie.projet2.domain.Artiste;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +41,17 @@ public class ArtisteDaoImpl implements ArtisteDao {
 	}
 
 	@Override
-	public Artiste findArtisteById(Integer id) throws Exception {
+	public Artiste findArtisteByCodeArtiste(Integer codeArtiste) throws Exception {
 
-		logger.info("Finding Artiste with id : " + id + "...");
-
-		Artiste result = (Artiste) this.sessionFactory.openSession().get(
-				Artiste.class, id);
+		logger.info("Finding Artiste with id : " + codeArtiste + "...");
+		
+		Criteria criteria = this.sessionFactory.openSession().createCriteria(Artiste.class);
+		
+		criteria.add(Restrictions.eq("idArtiste", codeArtiste));
+		
+		Artiste result = (Artiste) criteria.uniqueResult();
+		
+		logger.info("RESULT : " + result);
 
 		if (result != null) {
 
@@ -78,11 +84,17 @@ public class ArtisteDaoImpl implements ArtisteDao {
 
 	}
 
+	@Override
+	public void deleteArtisteById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Efface tous les artiste en BDD.
 	 * 
 	 * @throws Exception
-	 */
+	 
 	public void deleteArtisteById(Integer id) throws Exception {
  
 		logger.info("Deleting Artiste...");
@@ -94,5 +106,5 @@ public class ArtisteDaoImpl implements ArtisteDao {
 		logger.info("Artiste deleted ");
  
 	}
-
+	*/
 }

@@ -18,7 +18,7 @@ public interface ArtisteDao {
 	 * @return		Artiste
 	 * @throws 		Exception
 	 */
-	public Artiste findArtisteById(Integer id) throws Exception;
+	public Artiste findArtisteByCodeArtiste(Integer codeArtiste) throws Exception;
 	
 	
 	/**

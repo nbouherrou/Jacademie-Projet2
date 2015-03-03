@@ -48,9 +48,9 @@ public class ArtisteServiceImpl implements ArtisteService {
 
 	@Override
 	@Transactional(readOnly=true)
-	public Artiste findArtisteById(int id) throws Exception {
+	public Artiste findArtisteByCodeArtiste(Integer codeArtiste) throws Exception {
 		
-		return this.artisteDao.findArtisteById(id);
+		return this.artisteDao.findArtisteByCodeArtiste(codeArtiste);
 		
 	}
 
