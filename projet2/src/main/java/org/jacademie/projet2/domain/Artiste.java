@@ -40,7 +40,7 @@ public class Artiste implements java.io.Serializable {
 	private Integer id;
 	
 	
-	@Column(name = "CODE_ARTISTE")
+	@Column(name = "CODE_ARTISTE",unique = true, nullable = false)
 	private Integer idArtiste;
 
 	/**
