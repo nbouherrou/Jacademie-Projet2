@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jacademie.projet2.domain.Album;
 import org.jacademie.projet2.domain.Chanson;
 import org.jacademie.projet2.service.SongService;
 import org.jacademie.projet2.service.impl.SongServiceImpl;
@@ -19,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -32,15 +34,17 @@ public class SongController {
 	// http://localhost:8080/projet2/Songs.do
 	
 	@RequestMapping( value = "/Songs", method = RequestMethod.GET )
-    public String displaySongs(Model model) throws Exception {
+    public String displaySongs(@RequestParam("codeArtiste") Integer codeArtiste, @RequestParam("codeAlbum") Integer codeAlbum, Model model) throws Exception {
 
 		logger.info("In displaySongs (Controller)");
 		
-		List<Chanson> songs = this.songService.retrieveAllSongs();
+		model.addAttribute( "Chanson", new Chanson() );
 		
-		model.addAttribute("songs", songs);
-
-		logger.info("Out displaySongs (Controller)");
+		model.addAttribute("codeArtiste", 	codeArtiste);
+		
+		model.addAttribute("codeAlbum", 	codeAlbum);
+		
+		model.addAttribute("songs", 	this.songService.findSongsByCodeArtisteCodeAlbum(codeArtiste, codeAlbum));
 		
 		return "songs";
     }
@@ -68,19 +72,31 @@ public class SongController {
 	      
 		logger.info( "form control reached !" );
 	    
-		model.addAttribute("idChanson", 	song.getChansonID().getIdChanson());
+		logger.info("chanson to be added " + song);
 		
-		model.addAttribute("idAlbum", 		song.getChansonID().getAlbumID().getIdAlbum());
-		
-		model.addAttribute("idArtiste", 	song.getChansonID().getAlbumID().getIdArtiste());
-		
-		model.addAttribute("titre", 		song.getTitre());
-	      
-		model.addAttribute("dureeChanson", 	song.getDureeChanson());
+		try {
+			
+			this.songService.createNewSong(song);
+			
+			Integer codeArtiste = song.getChansonID().getAlbumID().getIdArtiste();
+			
+			Integer codeAlbum   = song.getChansonID().getAlbumID().getIdAlbum();
+			
+			model.addAttribute("codeArtiste", 	codeArtiste);
+			
+			model.addAttribute("codeAlbum", 	codeAlbum);
+			
+			model.addAttribute("songs", 	this.songService.findSongsByCodeArtisteCodeAlbum(codeArtiste, codeAlbum));
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
 	      
 		logger.info( "form control treated !" );
 		
-		return "songResult";
+		return "songs";
 		
 	}
 	
