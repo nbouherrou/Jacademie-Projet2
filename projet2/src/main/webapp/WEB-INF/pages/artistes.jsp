@@ -73,10 +73,6 @@
 
 
 
-
-						<%
-							int i = 0;
-						%>
 						<table class="table table-hover" id="bootstrap-table">
 							<thead>
 								<tr>
@@ -88,11 +84,8 @@
 							</thead>
 							<tbody>
 								<c:forEach var="artistes" items="${artistes}">
-									<%
-										i++;
-									%>
 									<tr>
-										<td><%=i%></td>
+										<td>${artistes.idArtiste}</td>
 										<td><a href="Albums.do?id=${artistes.idArtiste}"><c:out value="${artistes.nom}" /></a></td>
 										<td><i class="fa fa-pencil-square-o"></i></td>
 										<td><a href="deleteArtiste?id=${artistes.idArtiste}"><i class="fa fa-times"></i></a></td>

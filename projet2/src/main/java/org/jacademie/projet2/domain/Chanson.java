@@ -2,6 +2,7 @@ package org.jacademie.projet2.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -31,7 +32,12 @@ public class Chanson implements java.io.Serializable {
 	 * @see ChansonId
 	 */
 	@Id
+	@GeneratedValue
 	@Column(name = "CHANSON_ID")
+	private Integer id;
+	
+	
+	@Column(name = "CODE_CHANSON")
 	private ChansonId chansonID;
 
 	/**
@@ -138,6 +144,14 @@ public class Chanson implements java.io.Serializable {
 
 	public void setChansonID(ChansonId chansonID) {
 		this.chansonID = chansonID;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	@Override

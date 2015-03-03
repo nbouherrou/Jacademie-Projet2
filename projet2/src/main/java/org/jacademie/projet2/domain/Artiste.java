@@ -35,7 +35,12 @@ public class Artiste implements java.io.Serializable {
 	 * "ARTISTE_ID"
 	 */
 	@Id
+	@GeneratedValue
 	@Column(name = "ARTISTE_ID")
+	private Integer id;
+	
+	
+	@Column(name = "CODE_ARTISTE")
 	private Integer idArtiste;
 
 	/**
@@ -116,6 +121,16 @@ public class Artiste implements java.io.Serializable {
 
 	public void setIdArtiste(Integer idArtiste) {
 		this.idArtiste = idArtiste;
+	}
+	
+	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	@Override

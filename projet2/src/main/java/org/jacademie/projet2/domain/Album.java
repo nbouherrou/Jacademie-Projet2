@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -37,7 +38,12 @@ public class Album implements java.io.Serializable {
 	 * @see AlbumId
 	 */
 	@Id
+	@GeneratedValue
 	@Column(name = "ALBUM_ID")
+	private Integer id;
+	
+	
+	@Column(name = "CODE_ALBUM")
 	private AlbumId albumID;
 
 	/**
@@ -139,6 +145,14 @@ public class Album implements java.io.Serializable {
 
 	public void setAlbumID(AlbumId albumID) {
 		this.albumID = albumID;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	@Transient
