@@ -43,7 +43,7 @@ public class Album implements java.io.Serializable {
 	private Integer id;
 	
 	
-	@Column(name = "CODE_ALBUM")
+	@Column(name = "CODE_ALBUM",unique = true)
 	private AlbumId albumID;
 
 	/**

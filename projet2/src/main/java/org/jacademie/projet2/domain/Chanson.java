@@ -37,7 +37,7 @@ public class Chanson implements java.io.Serializable {
 	private Integer id;
 	
 	
-	@Column(name = "CODE_CHANSON")
+	@Column(name = "CODE_CHANSON",unique = true)
 	private ChansonId chansonID;
 
 	/**
