@@ -62,7 +62,7 @@ public class ArtisteController {
 		
 		try {
 			
-			this.artisteService.deleteArtiste(codeArtiste);
+			this.artisteService.deleteArtiste(this.artisteService.findArtisteByCodeArtiste(codeArtiste));
 			
 		} catch (Exception e) {
 			

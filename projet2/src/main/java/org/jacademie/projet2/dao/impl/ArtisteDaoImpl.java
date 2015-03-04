@@ -101,14 +101,15 @@ public class ArtisteDaoImpl implements ArtisteDao {
 	public void deleteArtiste(Artiste artiste) throws Exception {
 		
 		logger.info("Delete Artist " + artiste);
-
-		Session session = this.sessionFactory.openSession();
+		
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
 		
 		session.delete(artiste);
 		
-		session.close();
+		tx.commit();
 
-		
 		logger.info("Artiste deleted. \n");
 		
 	}
