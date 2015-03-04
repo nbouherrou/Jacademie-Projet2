@@ -2,6 +2,8 @@ package org.jacademie.projet2.web.controller;
 
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jacademie.projet2.domain.Album;
@@ -13,6 +15,9 @@ import org.jacademie.projet2.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -102,6 +107,26 @@ public class ArtisteController {
 		logger.info("Out deleteArtiste (Controller)");
 		
 		return new ModelAndView("redirect:Artistes.do");
+	}
+	
+	@RequestMapping(value = "/updateArtiste", method = RequestMethod.GET)
+	public String updateArtiste( @RequestParam("codeArtiste") Integer codeArtiste, Model model ) throws Exception {
+	     		
+		model.addAttribute( "Artiste", this.artisteService.findArtisteByCodeArtiste(codeArtiste) );
+		
+		return "artiste-edit";
+		
+	}
+	
+	@RequestMapping(value = "/ArtisteToUpdate", method = RequestMethod.POST)
+	public String updateArtiste( @Valid @ModelAttribute("Artiste") Artiste artiste, BindingResult result, ModelMap model ) throws Exception {
+	     		
+		this.artisteService.updateArtiste(artiste);
+		
+		model.addAttribute("artistes", this.artisteService.retrieveAllArtistes());
+		
+		return "artistes";
+		
 	}
 	
 	

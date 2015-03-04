@@ -37,4 +37,8 @@ public interface ArtisteDao {
 	public void deleteArtiste(Artiste artiste) throws Exception;
 	
 	
+	
+	public void updateArtiste(Artiste artiste);
+	
+	
 }

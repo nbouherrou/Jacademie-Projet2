@@ -87,7 +87,7 @@
 									<tr>
 										<td>${artistes.idArtiste}</td>
 										<td><a href="Albums.do?id=${artistes.idArtiste}"><c:out value="${artistes.nom}" /></a></td>
-										<td><i class="fa fa-pencil-square-o"></i></td>
+										<td><a href="updateArtiste.do?codeArtiste=${artistes.idArtiste}"><i class="fa fa-pencil-square-o"></i></a></td>
 										<td><a href="deleteArtiste.do?codeArtiste=${artistes.idArtiste}"><i class="fa fa-times"></i></a></td>
 									</tr>
 								</c:forEach>

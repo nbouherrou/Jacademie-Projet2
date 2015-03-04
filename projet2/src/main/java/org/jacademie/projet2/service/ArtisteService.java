@@ -32,4 +32,7 @@ public interface ArtisteService {
 	 * @throws Exception
 	 */
 	public void deleteArtiste(Artiste artiste) throws Exception;
+	
+	
+	public void updateArtiste(Artiste artiste);
 }

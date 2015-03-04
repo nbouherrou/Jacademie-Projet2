@@ -114,6 +114,23 @@ public class ArtisteDaoImpl implements ArtisteDao {
 		
 	}
 
+	@Override
+	public void updateArtiste(Artiste artiste) {
+		
+		logger.info("Update Artist " + artiste);
+		
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
+		
+		session.merge(artiste);
+		
+		tx.commit();
+
+		logger.info("Artiste updated. \n");
+		
+	}
+
 	/**
 	 * Efface tous les artiste en BDD.
 	 * 

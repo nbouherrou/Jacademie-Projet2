@@ -69,4 +69,11 @@ public class ArtisteServiceImpl implements ArtisteService {
  
 	}
 
+	@Override
+	public void updateArtiste(Artiste artiste) {
+		
+		this.artisteDao.updateArtiste(artiste);
+		
+	}
+
 }
