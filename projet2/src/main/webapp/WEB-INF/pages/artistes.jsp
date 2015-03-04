@@ -76,7 +76,7 @@
 						<table class="table table-hover" id="bootstrap-table">
 							<thead>
 								<tr>
-									<th>#ID</th>
+									<th>Code artiste</th>
 									<th>Artistes</th>
 									<th>Editer</th>
 									<th>Supprimer</th>
