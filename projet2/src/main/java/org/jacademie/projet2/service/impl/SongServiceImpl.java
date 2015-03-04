@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.jacademie.projet2.dao.SongsDao;
-import org.jacademie.projet2.dao.impl.SongsDaoImpl;
 import org.jacademie.projet2.domain.Chanson;
 import org.jacademie.projet2.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +50,9 @@ public class SongServiceImpl implements SongService {
 	}
 
 	@Override
-	public void deleteSong(Integer codeArtiste, Integer codeAlbum, Integer codeChanson) throws Exception {
+	public void deleteSong(Chanson chanson) throws Exception {
 	
-		this.songsDao.deleteSong( this.songsDao.findSongByCodeChansonCodeArtisteCodeAlbum(codeArtiste, codeAlbum, codeChanson));
+		this.songsDao.deleteSong( chanson);
 		
 	}
 

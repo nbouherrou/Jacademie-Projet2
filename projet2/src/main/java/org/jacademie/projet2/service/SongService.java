@@ -15,6 +15,6 @@ public interface SongService {
 	
 	public 	void createNewSong( Chanson song ) 						throws Exception;
 	
-	public void deleteSong(Integer codeArtiste, Integer codeAlbum, Integer codeChanson) throws Exception;
+	public void deleteSong(Chanson chanson) throws Exception;
 
 }

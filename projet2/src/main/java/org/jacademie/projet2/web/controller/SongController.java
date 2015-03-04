@@ -145,7 +145,7 @@ public class SongController {
 
 		logger.info("In displaySongs (Controller)");
 		
-		this.songService.deleteSong(codeArtiste, codeAlbum, codeChanson);
+		this.songService.deleteSong(this.songService.findSongByCodeChansonCodeArtisteCodeAlbum(codeArtiste, codeAlbum, codeChanson));
 		
 		String url = "redirect:Songs.do?codeArtiste="+codeArtiste+"&codeAlbum="+codeAlbum;
 		
