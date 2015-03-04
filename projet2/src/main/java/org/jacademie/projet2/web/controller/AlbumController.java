@@ -1,6 +1,7 @@
 package org.jacademie.projet2.web.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -11,6 +12,7 @@ import org.jacademie.projet2.domain.Artiste;
 import org.jacademie.projet2.domain.Chanson;
 import org.jacademie.projet2.service.AlbumService;
 import org.jacademie.projet2.service.ArtisteService;
+import org.jacademie.projet2.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +34,9 @@ public class AlbumController {
 	
 	@Autowired
 	private 	ArtisteService 	artisteService;
+	
+	@Autowired
+	private 	SongService 	songService;
 	
 	@RequestMapping(value = "/AlbumsListe", method = RequestMethod.GET)
     public String displayAlbums(Model model) throws Exception {
@@ -104,13 +109,26 @@ public class AlbumController {
 		return "albums";
     }
 	
-	
+	@SuppressWarnings("unchecked")
 	@RequestMapping( value = "/DeleteAlbum", method = RequestMethod.GET )
     public ModelAndView deleteAlbum(@RequestParam("codeArtiste") Integer codeArtiste, @RequestParam("codeAlbum") Integer codeAlbum, Model model) throws Exception {
 
 		logger.info("In displaySongs (Controller)");
 		
-		this.albumService.deleteAlbum(this.albumService.findAlbumByCodeArtisteCodeAlbum(codeArtiste, codeAlbum));
+		Album album = this.albumService.findAlbumByCodeArtisteCodeAlbum(codeArtiste, codeAlbum);
+
+		/*
+		  
+		 album.setChansons((Set<Chanson>) this.songService.findSongsByCodeAlbum(codeAlbum));
+		 
+		for(Chanson chanson : album.getChansons()){
+			
+			this.songService.deleteSong(chanson);
+		
+		}
+		*/
+		
+		this.albumService.deleteAlbum(album);
 		
 		String url = "redirect:Albums.do?id="+codeArtiste;
 		

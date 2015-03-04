@@ -1,13 +1,18 @@
 package org.jacademie.projet2.web.controller;
 
+import java.util.Set;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jacademie.projet2.domain.Album;
 import org.jacademie.projet2.domain.Artiste;
+import org.jacademie.projet2.domain.Chanson;
+import org.jacademie.projet2.service.AlbumService;
 import org.jacademie.projet2.service.ArtisteService;
+import org.jacademie.projet2.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +25,12 @@ public class ArtisteController {
 
 	@Autowired
 	private ArtisteService artisteService;
+	
+	@Autowired
+	private AlbumService albumService;
+	
+	@Autowired
+	private SongService songService;
 	
 	@RequestMapping(value = "/Artistes", method = RequestMethod.GET)
     public String displayArtistes(Model model) {
@@ -55,6 +66,7 @@ public class ArtisteController {
 		return new ModelAndView("redirect:Artistes.do");
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/deleteArtiste", method = RequestMethod.GET)
     public ModelAndView deleteArtiste(@RequestParam(value="codeArtiste") Integer codeArtiste) {
 		
@@ -62,7 +74,24 @@ public class ArtisteController {
 		
 		try {
 			
-			this.artisteService.deleteArtiste(this.artisteService.findArtisteByCodeArtiste(codeArtiste));
+			Artiste artiste = this.artisteService.findArtisteByCodeArtiste(codeArtiste);
+			
+			artiste.setAlbums((Set<Album>) this.albumService.findAlbumsByCodeArtiste(codeArtiste));
+			
+			for( Album album : artiste.getAlbums()){
+				
+				/*
+				for(Chanson chanson : album.getChansons()){
+					
+					this.songService.deleteSong(chanson);
+				
+				}
+				*/
+				
+				this.albumService.deleteAlbum(album);
+			}
+			
+			this.artisteService.deleteArtiste(artiste);
 			
 		} catch (Exception e) {
 			
