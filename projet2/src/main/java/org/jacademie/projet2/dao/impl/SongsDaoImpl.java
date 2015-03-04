@@ -182,4 +182,21 @@ public class SongsDaoImpl implements SongsDao {
 		return result;
 	}
 
+	@Override
+	public void updateSong(Chanson chanson) {
+		
+		logger.info("Update Chanson " + chanson);
+		
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
+		
+		session.merge(chanson);
+		
+		tx.commit();
+
+		logger.info("Chanson updated. \n");
+		
+	}
+
 }

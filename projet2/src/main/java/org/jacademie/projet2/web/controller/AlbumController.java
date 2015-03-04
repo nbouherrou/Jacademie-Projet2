@@ -134,7 +134,7 @@ public class AlbumController {
     }
 	
 	@RequestMapping(value = "/updateAlbum", method = RequestMethod.GET)
-	public String updateArtiste( @RequestParam("codeArtiste") Integer codeArtiste, @RequestParam("codeAlbum") Integer codeAlbum, Model model ) throws Exception {
+	public String updateAlbum( @RequestParam("codeArtiste") Integer codeArtiste, @RequestParam("codeAlbum") Integer codeAlbum, Model model ) throws Exception {
 	     		
 		model.addAttribute( "Album", this.albumService.findAlbumByCodeArtisteCodeAlbum(codeArtiste, codeAlbum) );
 		
@@ -143,7 +143,7 @@ public class AlbumController {
 	}
 	
 	@RequestMapping(value = "/AlbumToUpdate", method = RequestMethod.POST)
-	public String updateArtiste( @Valid @ModelAttribute("Album") Album album, BindingResult result, ModelMap model ) throws Exception {
+	public String updateAlbum( @Valid @ModelAttribute("Album") Album album, BindingResult result, ModelMap model ) throws Exception {
 	     		
 		this.albumService.updateAlbum(album);
 		

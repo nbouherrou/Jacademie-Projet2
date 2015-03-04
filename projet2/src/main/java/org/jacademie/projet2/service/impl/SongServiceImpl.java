@@ -72,4 +72,11 @@ public class SongServiceImpl implements SongService {
 		return this.songsDao.findSongsByCodeAlbum(codeAlbum);
 	}
 
+	@Override
+	public void updateSong(Chanson chanson) {
+		
+		this.songsDao.updateSong(chanson);
+		
+	}
+
 }

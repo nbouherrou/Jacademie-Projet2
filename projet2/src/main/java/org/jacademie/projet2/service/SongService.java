@@ -18,5 +18,7 @@ public interface SongService {
 	public void deleteSong(Chanson chanson) throws Exception;
 	
 	public List<Chanson> findSongsByCodeAlbum(Integer codeAlbum) throws Exception;
+	
+	public void updateSong(Chanson chanson);
 
 }

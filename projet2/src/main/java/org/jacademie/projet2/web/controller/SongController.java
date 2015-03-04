@@ -156,6 +156,26 @@ public class SongController {
 		
 		return new ModelAndView(url);
     }
+	
+	@RequestMapping(value = "/updateSong", method = RequestMethod.GET)
+	public String updateSong( @RequestParam("codeArtiste") Integer codeArtiste, @RequestParam("codeAlbum") Integer codeAlbum, @RequestParam("codeChanson") Integer codeChanson, Model model ) throws Exception {
+	     		
+		model.addAttribute( "Chanson", this.songService.findSongByCodeChansonCodeArtisteCodeAlbum(codeArtiste, codeAlbum, codeChanson) );
+		
+		return "song-edit";
+		
+	}
+	
+	@RequestMapping(value = "/SongToUpdate", method = RequestMethod.POST)
+	public String updateSong( @Valid @ModelAttribute("Chanson") Chanson song, BindingResult result, ModelMap model ) throws Exception {
+	     		
+		this.songService.updateSong(song);
+		
+		model.addAttribute( "songs", songService.findSongsByCodeArtisteCodeAlbum(song.getChansonID().getAlbumID().getIdArtiste(), song.getChansonID().getAlbumID().getIdAlbum()) );
+		
+		return "songs";
+		
+	}
 
 		
 }

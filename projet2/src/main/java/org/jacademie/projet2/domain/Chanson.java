@@ -154,15 +154,20 @@ public class Chanson implements java.io.Serializable {
 		this.id = id;
 	}
 
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Chanson [idChanson=");
-		builder.append(chansonID.toString());
+		builder.append("Chanson [id=");
+		builder.append(id);
+		builder.append(", chansonID=");
+		builder.append(chansonID);
 		builder.append(", titre=");
 		builder.append(titre);
 		builder.append(", dureeChanson=");
 		builder.append(dureeChanson);
+		builder.append(", album=");
+		builder.append(album);
 		builder.append("]");
 		return builder.toString();
 	}
