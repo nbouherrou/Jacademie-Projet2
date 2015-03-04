@@ -67,4 +67,20 @@ public class AlbumServiceImpl implements AlbumService{
 		return this.albumDao.findAlbumsByCodeArtiste(codeArtiste);
 	}
 
+	@Override
+	@Transactional
+	public void deleteAlbum(Album album) {
+		
+		this.albumDao.deleteAlbum(album);
+		
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Album findAlbumByCodeArtisteCodeAlbum(Integer codeArtiste,Integer codeAlbum) {
+		
+		return this.albumDao.findAlbumByCodeArtisteCodeAlbum(codeArtiste, codeAlbum);
+		
+	}
+
 }

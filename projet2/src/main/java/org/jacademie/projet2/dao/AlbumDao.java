@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.jacademie.projet2.domain.Album;
 import org.jacademie.projet2.domain.AlbumId;
+import org.jacademie.projet2.domain.Chanson;
 
 public interface AlbumDao {
 	
@@ -16,6 +17,10 @@ public interface AlbumDao {
 	public 	void 		updateAlbum(Album album) 		throws Exception;
 	
 	public 	List<Album> retrieveAllAlbums() 			throws Exception;
+	
+	public	void 		deleteAlbum(Album album);
+
+	public 	Album 		findAlbumByCodeArtisteCodeAlbum(Integer codeArtiste, Integer codeAlbum);
 	
 	public 	void 		deleteAllAlbums() 				throws Exception;
 

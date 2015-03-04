@@ -2,6 +2,7 @@ package org.jacademie.projet2.service;
 
 import java.util.List;
 
+import org.jacademie.projet2.domain.Album;
 import org.jacademie.projet2.domain.Chanson;
 
 

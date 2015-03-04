@@ -17,6 +17,10 @@ public interface AlbumService {
 	
 	public 	List<Album> retrieveAllAlbums() 			throws Exception;
 	
+	public	void 		deleteAlbum(Album album);
+	
+	public 	Album 		findAlbumByCodeArtisteCodeAlbum(Integer codeArtiste, Integer codeAlbum);
+	
 	public 	void 		deleteAllAlbums() 				throws Exception;
 
 }

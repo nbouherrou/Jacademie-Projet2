@@ -104,4 +104,17 @@ public class AlbumController {
 		return "albums";
     }
 	
+	
+	@RequestMapping( value = "/DeleteAlbum", method = RequestMethod.GET )
+    public ModelAndView deleteAlbum(@RequestParam("codeArtiste") Integer codeArtiste, @RequestParam("codeAlbum") Integer codeAlbum, Model model) throws Exception {
+
+		logger.info("In displaySongs (Controller)");
+		
+		this.albumService.deleteAlbum(this.albumService.findAlbumByCodeArtisteCodeAlbum(codeArtiste, codeAlbum));
+		
+		String url = "redirect:Albums.do?id="+codeArtiste;
+		
+		return new ModelAndView(url);
+    }
+	
 }
