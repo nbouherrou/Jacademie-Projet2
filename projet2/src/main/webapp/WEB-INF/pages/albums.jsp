@@ -30,7 +30,7 @@
 								<div class="col-lg-4 col-lg-offset-3">
 									<div class="login-panel panel panel-default">
 										<div class="panel-heading">
-											<h3 class="panel-title">Ajout album</h3>
+											<h3 class="panel-title">Ajout d'album</h3>
 										</div>
 										<div class="panel-body">
 											

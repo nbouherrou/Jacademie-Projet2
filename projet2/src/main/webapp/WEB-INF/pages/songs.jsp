@@ -26,39 +26,34 @@
 				<div class="row">
 					<div class="col-lg-12">
 					
-						<p>
-							Code Artiste : <c:out value="${codeArtiste}" />
-							Code Album 	 : <c:out value="${codeAlbum}" />
-						</p>
-						
 						<div class="container">
 							<div class="row">
 								<div class="col-lg-4 col-lg-offset-3">
 									<div class="login-panel panel panel-default">
 										<div class="panel-heading">
-											<h3 class="panel-title">Ajout chanson</h3>
+											<h3 class="panel-title">Ajout de chanson</h3>
 										</div>
 										<div class="panel-body">
 											
 										<form:form method="POST" modelAttribute="Chanson" action="${pageContext.request.contextPath}/AddSong.do" data-toggle="validator">
 											<fieldset>
 												<div class="form-group">
+												
+													<form:label class="control-label" style="display:none" path="chansonID.albumID.idAlbum">Code Album</form:label>
+											        <form:input class="form-control" style="display:none" path="chansonID.albumID.idAlbum" type="text" value="${codeAlbum}"/>
+											        
+<br>
+											        
+											        <form:label class="control-label" style="display:none" path="chansonID.albumID.idArtiste">Code Artiste</form:label>
+											        <form:input class="form-control" style="display:none" path="chansonID.albumID.idArtiste" type="text" value="${codeArtiste}"/>
+											        
+											        
 													
 													<form:label class="control-label" path="chansonID.idChanson">Code Chanson</form:label>
 											        <form:input class="form-control" path="chansonID.idChanson" type="text"/>
 											        
 											        <br>
-												
-											        <form:label class="control-label" style="display:none" path="chansonID.albumID.idAlbum">Code Album</form:label>
-											        <form:input class="form-control" style="display:none" path="chansonID.albumID.idAlbum" type="text" value="${codeAlbum}"/>
-											        
-											        <br>
-											        
-											        <form:label class="control-label" style="display:none" path="chansonID.albumID.idArtiste">Code Artiste</form:label>
-											        <form:input class="form-control" style="display:none" path="chansonID.albumID.idArtiste" type="text" value="${codeArtiste}"/>
-											        
-											        <br>
-											    
+																							    
 											        <form:label class="control-label" path="titre">Titre</form:label>
 											        <form:input class="form-control" path="titre" type="text" placeholder="titre"/>
 											        

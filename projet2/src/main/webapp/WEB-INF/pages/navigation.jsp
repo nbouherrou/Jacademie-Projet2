@@ -6,7 +6,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index">J//Academie</a>
+		<a class="navbar-brand" href="Artistes.do">J-Academie Projet#2</a>
 	</div>
 	<!-- /.navbar-header -->
 
