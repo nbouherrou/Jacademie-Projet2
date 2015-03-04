@@ -37,10 +37,9 @@ public class AlbumServiceImpl implements AlbumService{
 	}
 
 	@Override
-	@Transactional(propagation=Propagation.REQUIRED)
 	public void updateAlbum(Album album) throws Exception {
 		
-		this.updateAlbum(album);
+		this.albumDao.updateAlbum(album);
 		
 	}
 

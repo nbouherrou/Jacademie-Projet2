@@ -133,4 +133,24 @@ public class AlbumController {
 		return new ModelAndView(url);
     }
 	
+	@RequestMapping(value = "/updateAlbum", method = RequestMethod.GET)
+	public String updateArtiste( @RequestParam("codeArtiste") Integer codeArtiste, @RequestParam("codeAlbum") Integer codeAlbum, Model model ) throws Exception {
+	     		
+		model.addAttribute( "Album", this.albumService.findAlbumByCodeArtisteCodeAlbum(codeArtiste, codeAlbum) );
+		
+		return "album-edit";
+		
+	}
+	
+	@RequestMapping(value = "/AlbumToUpdate", method = RequestMethod.POST)
+	public String updateArtiste( @Valid @ModelAttribute("Album") Album album, BindingResult result, ModelMap model ) throws Exception {
+	     		
+		this.albumService.updateAlbum(album);
+		
+		model.addAttribute( "albums", albumService.findAlbumsByCodeArtiste(album.getAlbumID().getIdArtiste()) );
+		
+		return "albums";
+		
+	}
+	
 }

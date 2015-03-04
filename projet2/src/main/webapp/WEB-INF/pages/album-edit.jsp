@@ -40,22 +40,25 @@
 								<div class="col-lg-4 col-lg-offset-3">
 									<div class="login-panel panel panel-default">
 										<div class="panel-heading">
-											<h3 class="panel-title">Editer un artiste</h3>
+											<h3 class="panel-title">Editer un album</h3>
 										</div>
 										<div class="panel-body">
 											
-										<form:form method="POST" modelAttribute="Artiste" action="${pageContext.request.contextPath}/ArtisteToUpdate.do" data-toggle="validator">
+										<form:form method="POST" modelAttribute="Album" action="${pageContext.request.contextPath}/AlbumToUpdate.do" data-toggle="validator">
 											<fieldset>
 												<div class="form-group">
 													
-													<form:label class="control-label" style="display:none" path="id">Id artiste</form:label>
+													<form:label class="control-label" style="display:none" path="id">Id</form:label>
 											        <form:input class="form-control" style="display:none" path="id" type="text" value="${id}"/>
 											        
-													<form:label class="control-label" style="display:none" path="idArtiste">Code artiste</form:label>
-											        <form:input class="form-control" style="display:none" path="idArtiste" type="text" value="${idArtiste}"/>
+													<form:label class="control-label" style="display:none" path="albumID.idAlbum">Code album</form:label>
+											        <form:input class="form-control" style="display:none" path="albumID.idAlbum" type="text" value="${albumID.idAlbum}"/>
+											        
+											        <form:label class="control-label" style="display:none" path="albumID.idArtiste">Code artiste</form:label>
+											        <form:input class="form-control" style="display:none" path="albumID.idArtiste" type="text" value="${albumID.idArtiste}"/>
 											        
 											    
-											        <form:label class="control-label" path="nom">Nom d'un artiste</form:label>
+											        <form:label class="control-label" path="nom">Nom de l'album</form:label>
 											        <form:input class="form-control" path="nom" type="text" value="${nom}"/>
 											        
 											        <br>

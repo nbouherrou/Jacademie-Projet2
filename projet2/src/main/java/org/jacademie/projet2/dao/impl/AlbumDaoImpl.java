@@ -62,10 +62,16 @@ public class AlbumDaoImpl implements AlbumDao {
 
 	@Override
 	public void updateAlbum(Album album) throws Exception {
-		
+				
 		logger.info("Updating Album : " + album + "...");
 
-		this.sessionFactory.getCurrentSession().merge(album);
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
+		
+		session.merge(album);
+		
+		tx.commit();
 
 		logger.info("Album updated. \n");
 
