@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.jacademie.projet2.dao.SongsDao;
+import org.jacademie.projet2.domain.Artiste;
 import org.jacademie.projet2.domain.Chanson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -147,6 +148,38 @@ public class SongsDaoImpl implements SongsDao {
 
 		return result;
 		
+	}
+
+	@Override
+	public List<Chanson> findSongsByCodeAlbum(Integer codeAlbum)
+			throws Exception {
+		
+		logger.info("Retrieving all Songs by code Album : "+codeAlbum );
+		
+		Session session = this.sessionFactory.openSession();
+		
+		Criteria criteria = session.createCriteria(Chanson.class);
+		
+		criteria.add(Restrictions.eq("chansonID.albumID.idAlbum", codeAlbum));
+
+		@SuppressWarnings("unchecked")
+		List<Chanson> result = criteria.list();
+		
+		logger.info("RESULT : " + result);
+
+		if (result != null) {
+
+			logger.info("Chanson found : " + result);
+
+		} else {
+
+			logger.info("Chanson not found");
+
+		}
+		
+		session.close();
+
+		return result;
 	}
 
 }

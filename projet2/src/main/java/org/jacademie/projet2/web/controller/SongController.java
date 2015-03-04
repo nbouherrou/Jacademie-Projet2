@@ -88,6 +88,11 @@ public class SongController {
 			
 			model.addAttribute("songs", 	this.songService.findSongsByCodeArtisteCodeAlbum(codeArtiste, codeAlbum));
 			
+			//TEST
+			logger.info("TEST findSongsByCodeAlbum ");
+			
+			logger.info(this.songService.findSongsByCodeAlbum(codeAlbum));
+			
 		} catch (Exception e) {
 			
 			e.printStackTrace();

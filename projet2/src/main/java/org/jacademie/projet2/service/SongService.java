@@ -2,7 +2,6 @@ package org.jacademie.projet2.service;
 
 import java.util.List;
 
-import org.jacademie.projet2.domain.Album;
 import org.jacademie.projet2.domain.Chanson;
 
 
@@ -17,5 +16,7 @@ public interface SongService {
 	public 	void createNewSong( Chanson song ) 						throws Exception;
 	
 	public void deleteSong(Chanson chanson) throws Exception;
+	
+	public List<Chanson> findSongsByCodeAlbum(Integer codeAlbum) throws Exception;
 
 }

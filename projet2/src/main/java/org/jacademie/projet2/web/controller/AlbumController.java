@@ -1,5 +1,6 @@
 package org.jacademie.projet2.web.controller;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -116,17 +117,14 @@ public class AlbumController {
 		logger.info("In displaySongs (Controller)");
 		
 		Album album = this.albumService.findAlbumByCodeArtisteCodeAlbum(codeArtiste, codeAlbum);
-
-		/*
 		  
-		 album.setChansons((Set<Chanson>) this.songService.findSongsByCodeAlbum(codeAlbum));
+		album.setChansons(new HashSet<>(this.songService.findSongsByCodeAlbum(codeAlbum)));
 		 
 		for(Chanson chanson : album.getChansons()){
 			
 			this.songService.deleteSong(chanson);
 		
 		}
-		*/
 		
 		this.albumService.deleteAlbum(album);
 		

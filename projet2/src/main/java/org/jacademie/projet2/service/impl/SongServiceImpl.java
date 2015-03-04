@@ -67,4 +67,9 @@ public class SongServiceImpl implements SongService {
 		return this.songsDao.findSongByCodeChansonCodeArtisteCodeAlbum(codeArtiste, codeAlbum, codeChanson);
 	}
 
+	@Override
+	public List<Chanson> findSongsByCodeAlbum(Integer codeAlbum) throws Exception{
+		return this.songsDao.findSongsByCodeAlbum(codeAlbum);
+	}
+
 }

@@ -14,6 +14,8 @@ public interface SongsDao {
 	
 	public 	void createNewSong( Chanson song ) 						throws Exception;
 	
-	public	void deleteSong(Chanson chanson);
+	public	void deleteSong(Chanson chanson)	throws Exception;
+	
+	public List<Chanson> findSongsByCodeAlbum(Integer codeAlbum)	throws Exception;
 
 }
