@@ -98,8 +98,17 @@ public class ArtisteDaoImpl implements ArtisteDao {
 	}
 
 	@Override
-	public void deleteArtisteById(Integer id) throws Exception {
-		// TODO Auto-generated method stub
+	public void deleteArtiste(Artiste artiste) throws Exception {
+		
+		logger.info("Delete Artist " + artiste);
+
+		Session session = this.sessionFactory.openSession();
+		
+		session.delete(artiste);
+		
+		session.close();
+		
+		logger.info("Artiste deleted. \n");
 		
 	}
 

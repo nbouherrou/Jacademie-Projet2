@@ -136,7 +136,9 @@ public class Artiste implements java.io.Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Artiste [idArtiste=");
+		builder.append("Artiste [id=");
+		builder.append(id);
+		builder.append(", idArtiste=");
 		builder.append(idArtiste);
 		builder.append(", nom=");
 		builder.append(nom);
@@ -145,5 +147,6 @@ public class Artiste implements java.io.Serializable {
 		builder.append("]");
 		return builder.toString();
 	}
+
 
 }

@@ -56,17 +56,18 @@ public class ArtisteController {
 	}
 	
 	@RequestMapping(value = "/deleteArtiste", method = RequestMethod.GET)
-    public ModelAndView deleteArtiste(@RequestParam(value="id") Integer id) {
+    public ModelAndView deleteArtiste(@RequestParam(value="codeArtiste") Integer codeArtiste) {
 		
 		logger.info("In deleteArtiste (Controller)");
 		
 		try {
 			
-			this.artisteService.deleteArtisteById(id);
+			this.artisteService.deleteArtiste(codeArtiste);
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			
 		}
 		
 		logger.info("Out deleteArtiste (Controller)");

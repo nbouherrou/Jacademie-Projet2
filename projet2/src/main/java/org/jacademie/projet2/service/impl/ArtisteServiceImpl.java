@@ -63,9 +63,9 @@ public class ArtisteServiceImpl implements ArtisteService {
 	
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
-	public void deleteArtisteById(Integer id) throws Exception {
+	public void deleteArtiste(Integer codeArtiste) throws Exception{;
 		
-		this.artisteDao.deleteArtisteById(id);
+		this.artisteDao.deleteArtiste( artisteDao.findArtisteByCodeArtiste(codeArtiste));
  
 	}
 

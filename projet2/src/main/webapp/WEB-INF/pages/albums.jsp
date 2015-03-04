@@ -82,8 +82,9 @@
 									<tr>
 										<td><c:out value="${album.albumID.idAlbum}" /></td>
 										<td>
-											<!-- a href="Songs.do?codeArtiste=${album.albumID.idArtiste}&codeAlbum=${album.albumID.idAlbum}"-->
-											<c:out value="${album.nom}" />
+											<a href="Songs.do?codeArtiste=${album.albumID.idArtiste}&codeAlbum=${album.albumID.idAlbum}">
+												<c:out value="${album.nom}" />
+											</a>
 										</td>
 									</tr>
 								</c:forEach>

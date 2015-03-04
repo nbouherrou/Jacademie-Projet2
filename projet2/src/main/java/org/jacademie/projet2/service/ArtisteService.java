@@ -31,5 +31,5 @@ public interface ArtisteService {
 	 * 
 	 * @throws Exception
 	 */
-	public void deleteArtisteById(Integer id) throws Exception;
+	public void deleteArtiste(Integer codeArtiste) throws Exception;
 }
