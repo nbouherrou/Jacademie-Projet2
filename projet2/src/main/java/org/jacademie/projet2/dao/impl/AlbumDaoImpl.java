@@ -30,35 +30,17 @@ public class AlbumDaoImpl implements AlbumDao {
 
 		logger.info("Creating Album : " + album + "...");
 		
-		Session session = this.sessionFactory.openSession();
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
 
 		session.save(album);
 		
-		session.close();
+		tx.commit();
 
 		logger.info("Album created. \n");
 	}
 
-	
-	@Override
-	public Album findAlbumById(AlbumId albumID) throws Exception {
-		
-		logger.info("Finding Album with id : " + albumID + "...");
-
-		Album result = (Album) this.sessionFactory.getCurrentSession().get(Album.class, albumID);
-
-		if (result != null) {
-
-			logger.info("Album found : " + result);
-			
-		} else {
-			
-			logger.info("Album not found");
-			
-		}
-
-		return result;
-	}
 
 	@Override
 	public void updateAlbum(Album album) throws Exception {
@@ -77,54 +59,23 @@ public class AlbumDaoImpl implements AlbumDao {
 
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Album> retrieveAllAlbums() throws Exception {
-		
-		logger.info("Retrieving all Albums ...");
-		
-		List<Album> result = new ArrayList<Album>();
-		
-		Session session = this.sessionFactory.openSession();
-
-		result = session.createCriteria(Album.class).list();
-
-		logger.info("Albums : " + result);
-		
-		session.close();
-
-		return result;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public void deleteAllAlbums() throws Exception {
-		
-		logger.info("Deleting all Albums...");
-		
-		this.sessionFactory.getCurrentSession().createCriteria(Album.class).list().forEach(element -> {
-			
-			this.sessionFactory.getCurrentSession().delete(element);
-			
-		});
-		
-		logger.info("Albums deleted ");
-
-	}
-
 
 	@Override
 	public List<Album> findAlbumsByCodeArtiste(Integer codeArtiste) throws Exception {
 		
 		logger.info("Finding Albums with codeArtiste : " + codeArtiste + "...");
 		
-		Session session = this.sessionFactory.openSession();
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
 		
 		Criteria criteria = session.createCriteria(Album.class);
 		
 		criteria.add(Restrictions.eq("albumID.idArtiste", codeArtiste));
 		
 		List<Album> result = criteria.list();
+		
+		tx.commit();
 		
 		logger.info("findAlbumsByCodeArtiste Result : " + result);
 
@@ -137,8 +88,6 @@ public class AlbumDaoImpl implements AlbumDao {
 			logger.info("Albums not found");
 
 		}
-		
-		session.close();
 
 		return result;
 

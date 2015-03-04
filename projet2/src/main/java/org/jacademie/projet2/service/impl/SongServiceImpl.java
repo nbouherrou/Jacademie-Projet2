@@ -15,21 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service(value = "songService")
 public class SongServiceImpl implements SongService {
 
-	private static org.apache.logging.log4j.Logger logger = LogManager
-			.getLogger(SongServiceImpl.class);
+	private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(SongServiceImpl.class);
 
 	@Autowired
 	private SongsDao songsDao;
 
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
-	public List<Chanson> retrieveAllSongs() throws Exception {
-
-		logger.info("Retrieving all songs ...");
-
-		return this.songsDao.retrieveAllSongs();
-
-	}
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)

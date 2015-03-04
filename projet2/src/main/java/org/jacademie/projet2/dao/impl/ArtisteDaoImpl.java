@@ -23,40 +23,45 @@ public class ArtisteDaoImpl implements ArtisteDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+
 	@Override
 	public Set<Artiste> retrieveAllArtistes() {
 
 		logger.info("In retrieveAllArtistes (DAO)");
 		
-		Session session = this.sessionFactory.openSession();
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
 
-		Criteria criteria = session.createCriteria(
-				Artiste.class);
+		Criteria criteria = session.createCriteria(Artiste.class);
 
-		@SuppressWarnings("unchecked")
 		List<Artiste> list = criteria.list();
+		
+		tx.commit();
 
 		Set<Artiste> result = new HashSet<Artiste>(list);
 
 		logger.info("Out retrieveAllArtistes (DAO)");
-		
-		session.close();
 
 		return result;
 	}
-
+	
 	@Override
 	public Artiste findArtisteByCodeArtiste(Integer codeArtiste) throws Exception {
 
 		logger.info("Finding Artiste with id : " + codeArtiste + "...");
 		
-		Session session = this.sessionFactory.openSession();
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
 		
 		Criteria criteria = session.createCriteria(Artiste.class);
 		
 		criteria.add(Restrictions.eq("idArtiste", codeArtiste));
 		
 		Artiste result = (Artiste) criteria.uniqueResult();
+		
+		tx.commit();
 		
 		logger.info("RESULT : " + result);
 
@@ -69,8 +74,6 @@ public class ArtisteDaoImpl implements ArtisteDao {
 			logger.info("Artiste not found");
 
 		}
-		
-		session.close();
 
 		return result;
 	}
@@ -87,11 +90,13 @@ public class ArtisteDaoImpl implements ArtisteDao {
 
 		logger.info("Creating artiste : " + artiste + "...");
 
-		Session session = this.sessionFactory.openSession();
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
 		
 		session.save(artiste);
 		
-		session.close();
+		tx.commit();
 
 		logger.info("Artiste created. \n");
 
@@ -131,21 +136,4 @@ public class ArtisteDaoImpl implements ArtisteDao {
 		
 	}
 
-	/**
-	 * Efface tous les artiste en BDD.
-	 * 
-	 * @throws Exception
-	 
-	public void deleteArtisteById(Integer id) throws Exception {
- 
-		logger.info("Deleting Artiste...");
-		
-		Artiste artiste = this.findArtisteById(id);
-	
-		this.sessionFactory.getCurrentSession().delete(artiste);
-			
-		logger.info("Artiste deleted ");
- 
-	}
-	*/
 }

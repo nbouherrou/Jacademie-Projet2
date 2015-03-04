@@ -29,35 +29,12 @@ public class AlbumServiceImpl implements AlbumService{
 	}
 
 	@Override
-	@Transactional(readOnly=true)
-	public Album findAlbumById(AlbumId albumID) throws Exception {
-		
-		return this.albumDao.findAlbumById(albumID);
-		
-	}
-
-	@Override
 	public void updateAlbum(Album album) throws Exception {
 		
 		this.albumDao.updateAlbum(album);
 		
 	}
 
-	@Override
-	@Transactional(propagation=Propagation.REQUIRED)
-	public List<Album> retrieveAllAlbums() throws Exception {
-		
-		return this.albumDao.retrieveAllAlbums();
-		
-	}
-
-	@Override
-	@Transactional(propagation=Propagation.REQUIRED)
-	public void deleteAllAlbums() throws Exception {
-		
-		this.albumDao.deleteAllAlbums();
-		
-	}
 
 	@Override
 	public List<Album> findAlbumsByCodeArtiste(Integer codeArtiste)

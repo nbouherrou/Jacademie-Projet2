@@ -25,39 +25,22 @@ public class SongsDaoImpl implements SongsDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Chanson> retrieveAllSongs() throws Exception {
-		
-		logger.info("Retrieving all Albums ...");
-		
-		List<Chanson> result = new ArrayList<Chanson>();
-		
-		Session session = this.sessionFactory.openSession();
-		
-		result = session.createCriteria(Chanson.class).list();
-		
-		logger.info("Albums retrieved : " + result.size());
-		
-		session.close();
-		
-		return result;
-	}
 	
 	@Override
 	public void createNewSong(Chanson song) throws Exception {
 		
 		logger.info("Creating a new song " + song.getTitre() + " in dao...");
 		
-		Session session = this.sessionFactory.openSession();
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
 
 		session.save(song);
 
 		logger.info("New song created in dao !");
 
-		session.close();
+		tx.commit();
 
-		
 	}
 
 	@Override
@@ -65,7 +48,9 @@ public class SongsDaoImpl implements SongsDao {
 		
 		logger.info("Finding Chansons with codeArtiste : " + codeArtiste + ", codeAlbum "+ codeAlbum + "...");
 		
-		Session session = this.sessionFactory.openSession();
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
 		
 		Criteria criteria = session.createCriteria(Chanson.class);
 		
@@ -74,6 +59,8 @@ public class SongsDaoImpl implements SongsDao {
 		criteria.add(Restrictions.eq("chansonID.albumID.idAlbum", codeAlbum));
 		
 		List<Chanson> result = criteria.list();
+		
+		tx.commit();
 		
 		logger.info("findSongsByCodeArtisteCodeAlbum Result : " + result);
 
@@ -86,8 +73,6 @@ public class SongsDaoImpl implements SongsDao {
 			logger.info("Chansons not found");
 
 		}
-		
-		session.close();
 
 		return result;
 	}
@@ -120,7 +105,9 @@ public class SongsDaoImpl implements SongsDao {
 		
 		logger.info("Finding Song with id : " + codeArtiste + ", " + codeAlbum + ", " + codeChanson);
 		
-		Session session = this.sessionFactory.openSession();
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
 		
 		Criteria criteria = session.createCriteria(Chanson.class);
 		
@@ -131,6 +118,8 @@ public class SongsDaoImpl implements SongsDao {
 		criteria.add(Restrictions.eq("chansonID.albumID.idAlbum", codeAlbum));
 		
 		Chanson result = (Chanson) criteria.uniqueResult();
+		
+		tx.commit();
 		
 		logger.info("RESULT : " + result);
 
@@ -143,8 +132,6 @@ public class SongsDaoImpl implements SongsDao {
 			logger.info("Artiste not found");
 
 		}
-		
-		session.close();
 
 		return result;
 		
@@ -156,14 +143,17 @@ public class SongsDaoImpl implements SongsDao {
 		
 		logger.info("Retrieving all Songs by code Album : "+codeAlbum );
 		
-		Session session = this.sessionFactory.openSession();
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		org.hibernate.Transaction tx = session.beginTransaction();
 		
 		Criteria criteria = session.createCriteria(Chanson.class);
 		
 		criteria.add(Restrictions.eq("chansonID.albumID.idAlbum", codeAlbum));
 
-		@SuppressWarnings("unchecked")
 		List<Chanson> result = criteria.list();
+		
+		tx.commit();
 		
 		logger.info("RESULT : " + result);
 
@@ -176,8 +166,6 @@ public class SongsDaoImpl implements SongsDao {
 			logger.info("Chanson not found");
 
 		}
-		
-		session.close();
 
 		return result;
 	}

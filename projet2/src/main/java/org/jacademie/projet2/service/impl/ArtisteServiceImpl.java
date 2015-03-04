@@ -23,6 +23,8 @@ public class ArtisteServiceImpl implements ArtisteService {
 	@Autowired
 	private ArtisteDao artisteDao;
 	
+	
+	
 	@Override
 	@Transactional(readOnly=true)
 	public Collection<Artiste> retrieveAllArtistes() {
@@ -45,6 +47,7 @@ public class ArtisteServiceImpl implements ArtisteService {
 		
 		return list;
 	}
+	
 
 	@Override
 	@Transactional(readOnly=true)
