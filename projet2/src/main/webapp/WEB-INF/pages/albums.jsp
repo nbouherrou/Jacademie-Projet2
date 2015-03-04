@@ -38,8 +38,8 @@
 											<fieldset>
 												<div class="form-group">
 													
-													<form:label class="control-label" path="albumID.idArtiste">Id artiste</form:label>
-											        <form:input class="form-control" path="albumID.idArtiste" type="text" value="${id}"/>
+													<form:label class="control-label" style="display:none" path="albumID.idArtiste">Id artiste</form:label>
+											        <form:input class="form-control" style="display:none" path="albumID.idArtiste" type="text" value="${id}"/>
 											        
 											        <br>
 												

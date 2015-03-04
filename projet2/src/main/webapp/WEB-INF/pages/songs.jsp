@@ -49,13 +49,13 @@
 											        
 											        <br>
 												
-											        <form:label class="control-label" path="chansonID.albumID.idAlbum">Code Album</form:label>
-											        <form:input class="form-control" path="chansonID.albumID.idAlbum" type="text" value="${codeAlbum}"/>
+											        <form:label class="control-label" style="display:none" path="chansonID.albumID.idAlbum">Code Album</form:label>
+											        <form:input class="form-control" style="display:none" path="chansonID.albumID.idAlbum" type="text" value="${codeAlbum}"/>
 											        
 											        <br>
 											        
-											        <form:label class="control-label" path="chansonID.albumID.idArtiste">Code Artiste</form:label>
-											        <form:input class="form-control" path="chansonID.albumID.idArtiste" type="text" value="${codeArtiste}"/>
+											        <form:label class="control-label" style="display:none" path="chansonID.albumID.idArtiste">Code Artiste</form:label>
+											        <form:input class="form-control" style="display:none" path="chansonID.albumID.idArtiste" type="text" value="${codeArtiste}"/>
 											        
 											        <br>
 											    
