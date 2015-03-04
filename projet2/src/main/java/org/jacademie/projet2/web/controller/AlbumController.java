@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/*
+/**
  * Controller Album
  */
 @Controller
@@ -26,25 +26,25 @@ public class AlbumController {
 
 	private static Logger logger = LogManager.getLogger(AlbumController.class);
 
-	/*
+	/**
 	 * Service Album
 	 */
 	@Autowired
 	private AlbumService albumService;
 
-	/*
+	/**
 	 * Service Artiste
 	 */
 	@Autowired
 	private ArtisteService artisteService;
 
-	/*
+	/**
 	 * Service Song
 	 */
 	@Autowired
 	private SongService songService;
 
-	/*
+	/**
 	 * Recupère les albums associé à un Artiste et initialise le formulaire
 	 * 
 	 * @param : Integer id
@@ -63,7 +63,7 @@ public class AlbumController {
 
 	}
 
-	/*
+	/**
 	 * Ajoute un album en bdd et rinitialise la vue
 	 * 
 	 * @param : Album album
@@ -98,10 +98,11 @@ public class AlbumController {
 
 	}
 
-	/*
+	/**
 	 * Initialise le formulaire d'edition d'un album
 	 * 
-	 * @param : Integer codeArtiste Integer codeAlbum
+	 * @param   Integer codeArtiste 
+	 * @param	Integer codeAlbum
 	 */
 	@RequestMapping(value = "/updateAlbum", method = RequestMethod.GET)
 	public String updateAlbum(@RequestParam("codeArtiste") Integer codeArtiste,
@@ -115,7 +116,7 @@ public class AlbumController {
 
 	}
 
-	/*
+	/**
 	 * Traite l'objet modifié et le traite en bdd
 	 * 
 	 * @param : Album album

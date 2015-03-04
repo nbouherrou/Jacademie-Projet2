@@ -1,7 +1,5 @@
 package org.jacademie.projet2.web.controller;
 
-// import java.util.List;
-
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
@@ -20,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-/*
+/**
  * Controller Song
  */
 @Controller
@@ -28,13 +26,13 @@ public class SongController {
 
 	private static Logger logger = LogManager.getLogger(SongController.class);
 
-	/*
+	/***
 	 * Service Song
 	 */
 	@Autowired
 	private SongService songService;
 
-	/*
+	/**
 	 * Récupère les chansons associé à un Artiste et un Album
 	 * 
 	 * @param : Integer codeArtiste Integer codeAlbum
@@ -59,26 +57,13 @@ public class SongController {
 		return "songs";
 	}
 
-	// http://localhost:8080/projet2/SongForm.do
-
-	@RequestMapping(value = "/SongForm", method = RequestMethod.GET)
-	public ModelAndView sendSong() throws Exception {
-
-		return new ModelAndView("songForm", "command", new Chanson());
-
-	}
-
-	@RequestMapping(value = "/SongFormCreation", method = RequestMethod.GET)
-	public ModelAndView sendBlankSong() throws Exception {
-
-		return new ModelAndView("songFormCreation", "command", new Chanson());
-
-	}
-
-	// http://localhost:8080/projet2/AddSong.do
-
+	/**
+	 * Creation d'une nouvelle Chanson via le formulaire
+	 * 
+	 * @param Chanson song
+	 */
 	@RequestMapping(value = "/AddSong", method = RequestMethod.POST)
-	public String addStudent(@Valid @ModelAttribute("Chanson") Chanson song,
+	public String addSong(@Valid @ModelAttribute("Chanson") Chanson song,
 			BindingResult result, ModelMap model) {
 
 		logger.info("form control reached !");
@@ -113,56 +98,12 @@ public class SongController {
 
 	}
 
-	// http://localhost:8080/projet2/CreateNewSong.do
-	/*
-	 * Creation d'une nouvelle Chanson via le formulaire
-	 * 
-	 * @param Chanson song
-	 */
-	@RequestMapping(value = "/CreateNewSong", method = RequestMethod.POST)
-	public String createNewSong(@Valid @ModelAttribute("Chanson") Chanson song,
-			BindingResult result, ModelMap model) {
-
-		logger.info("form control reached !");
-
-		model.addAttribute("idChanson", song.getChansonID().getIdChanson());
-
-		model.addAttribute("idAlbum", song.getChansonID().getAlbumID()
-				.getIdAlbum());
-
-		model.addAttribute("idArtiste", song.getChansonID().getAlbumID()
-				.getIdArtiste());
-
-		model.addAttribute("titre", song.getTitre());
-
-		model.addAttribute("dureeChanson", song.getDureeChanson());
-
-		SongServiceImpl songServiceImpl = new SongServiceImpl();
-
-		try {
-
-			logger.info("song persisting ...");
-
-			songServiceImpl.createNewSong(song);
-
-			logger.info("song persisted !");
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-
-		}
-
-		logger.info("form control treated !");
-
-		return "songResultCreation";
-
-	}
-
-	/*
+	/**
 	 * Suppression d'une chanson
 	 * 
-	 * @param : Integer codeArtiste Integer codeAlbum Integer codeChanson
+	 * @param  	Integer codeArtiste 
+	 * @param	Integer codeAlbum 
+	 * @param	Integer codeChanson
 	 */
 	@RequestMapping(value = "/DeleteSong", method = RequestMethod.GET)
 	public ModelAndView deleteSong(
@@ -183,10 +124,12 @@ public class SongController {
 		return new ModelAndView(url);
 	}
 
-	/*
+	/**
 	 * Initialise le formulaire d'edition d'une chanson
 	 * 
-	 * @param : Integer codeArtiste Integer codeAlbum Integer codeChanson
+	 * @param 	Integer codeArtiste 
+	 * @param	Integer codeAlbum 
+	 * @param	Integer codeChanson
 	 */
 	@RequestMapping(value = "/updateSong", method = RequestMethod.GET)
 	public String updateSong(@RequestParam("codeArtiste") Integer codeArtiste,
@@ -202,7 +145,7 @@ public class SongController {
 
 	}
 
-	/*
+	/**
 	 * Traite l'objet modifié et le traite en bdd
 	 * 
 	 * @param : Chanson chanson

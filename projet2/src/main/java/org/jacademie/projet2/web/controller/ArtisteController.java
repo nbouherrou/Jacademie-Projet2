@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-/*
+/**
  * Controller Artiste
  */
 @Controller
@@ -28,25 +28,25 @@ public class ArtisteController {
 	private static Logger logger = LogManager
 			.getLogger(ArtisteController.class);
 
-	/*
+	/**
 	 * Service Artiste
 	 */
 	@Autowired
 	private ArtisteService artisteService;
 
-	/*
+	/**
 	 * Service Album
 	 */
 	@Autowired
 	private AlbumService albumService;
 
-	/*
+	/**
 	 * Service Song
 	 */
 	@Autowired
 	private SongService songService;
 
-	/*
+	/**
 	 * Récupère tous les artistes de la bdd
 	 */
 	@RequestMapping(value = "/Artistes", method = RequestMethod.GET)
@@ -62,10 +62,11 @@ public class ArtisteController {
 		return "artistes";
 	}
 
-	/*
+	/**
 	 * Enregistrement d'un artiste en bdd
 	 * 
-	 * @param : String codeArtiste String nom
+	 * @param   String codeArtiste 
+	 * @param   String nom
 	 */
 	@RequestMapping(value = "/registerArtiste", method = RequestMethod.POST)
 	public ModelAndView submitFormArtiste(
@@ -91,7 +92,7 @@ public class ArtisteController {
 		return new ModelAndView("redirect:Artistes.do");
 	}
 
-	/*
+	/**
 	 * Initialise le formulaire d'edition d'un artiste
 	 * 
 	 * @param : Integer codeArtiste
@@ -108,7 +109,7 @@ public class ArtisteController {
 
 	}
 
-	/*
+	/**
 	 * Traite l'objet modifié et le traite en bdd
 	 * 
 	 * @param : Artiste artiste
