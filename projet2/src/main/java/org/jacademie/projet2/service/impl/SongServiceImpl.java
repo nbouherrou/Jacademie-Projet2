@@ -50,4 +50,19 @@ public class SongServiceImpl implements SongService {
 		return this.songsDao.findSongsByCodeArtisteCodeAlbum(codeArtiste,codeAlbum);
 	}
 
+	@Override
+	public void deleteSong(Integer codeArtiste, Integer codeAlbum, Integer codeChanson) throws Exception {
+	
+		this.songsDao.deleteSong( this.songsDao.findSongByCodeChansonCodeArtisteCodeAlbum(codeArtiste, codeAlbum, codeChanson));
+		
+	}
+
+	@Override
+	public Chanson findSongByCodeChansonCodeArtisteCodeAlbum(
+			Integer codeArtiste, Integer codeAlbum, Integer codeChanson)
+			throws Exception {
+		
+		return this.songsDao.findSongByCodeChansonCodeArtisteCodeAlbum(codeArtiste, codeAlbum, codeChanson);
+	}
+
 }

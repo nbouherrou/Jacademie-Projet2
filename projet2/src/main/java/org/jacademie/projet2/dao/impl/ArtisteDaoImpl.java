@@ -107,6 +107,7 @@ public class ArtisteDaoImpl implements ArtisteDao {
 		session.delete(artiste);
 		
 		session.close();
+
 		
 		logger.info("Artiste deleted. \n");
 		

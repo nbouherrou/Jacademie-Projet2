@@ -138,5 +138,19 @@ public class SongController {
 		return "songResultCreation";
 		
 	}
+	
+	
+	@RequestMapping( value = "/DeleteSong", method = RequestMethod.GET )
+    public ModelAndView deleteSong(@RequestParam("codeArtiste") Integer codeArtiste, @RequestParam("codeAlbum") Integer codeAlbum, @RequestParam("codeChanson") Integer codeChanson, Model model) throws Exception {
+
+		logger.info("In displaySongs (Controller)");
+		
+		this.songService.deleteSong(codeArtiste, codeAlbum, codeChanson);
+		
+		String url = "redirect:Songs.do?codeArtiste="+codeArtiste+"&codeAlbum="+codeAlbum;
+		
+		return new ModelAndView(url);
+    }
+
 		
 }

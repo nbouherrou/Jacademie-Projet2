@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.jacademie.projet2.dao.SongsDao;
 import org.jacademie.projet2.domain.Album;
+import org.jacademie.projet2.domain.Artiste;
 import org.jacademie.projet2.domain.Chanson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -88,6 +89,58 @@ public class SongsDaoImpl implements SongsDao {
 		session.close();
 
 		return result;
+	}
+
+	@Override
+	public void deleteSong(Chanson chanson) {
+		
+		logger.info(" Deleting song " + chanson);
+		
+		Session session = this.sessionFactory.openSession();
+		
+		session.delete(chanson);
+		
+		session.close();
+		
+		logger.info(" Song deleted ! ");
+		
+	}
+
+	@Override
+	public Chanson findSongByCodeChansonCodeArtisteCodeAlbum(
+			Integer codeArtiste, Integer codeAlbum, Integer codeChanson)
+			throws Exception {
+		
+		logger.info("Finding Song with id : " + codeArtiste + ", " + codeAlbum + ", " + codeChanson);
+		
+		Session session = this.sessionFactory.openSession();
+		
+		Criteria criteria = session.createCriteria(Chanson.class);
+		
+		criteria.add(Restrictions.eq("chansonID.idChanson", codeChanson));
+		
+		criteria.add(Restrictions.eq("chansonID.albumID.idArtiste", codeArtiste));
+		
+		criteria.add(Restrictions.eq("chansonID.albumID.idAlbum", codeAlbum));
+		
+		Chanson result = (Chanson) criteria.uniqueResult();
+		
+		logger.info("RESULT : " + result);
+
+		if (result != null) {
+
+			logger.info("Artiste found : " + result);
+
+		} else {
+
+			logger.info("Artiste not found");
+
+		}
+		
+		session.close();
+
+		return result;
+		
 	}
 
 }

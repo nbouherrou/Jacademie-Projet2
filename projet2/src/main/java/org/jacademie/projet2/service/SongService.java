@@ -11,6 +11,10 @@ public interface SongService {
 	
 	public 	List<Chanson> findSongsByCodeArtisteCodeAlbum(Integer codeArtiste, Integer codeAlbum) 		throws Exception;
 	
+	public 	Chanson findSongByCodeChansonCodeArtisteCodeAlbum(Integer codeArtiste, Integer codeAlbum,  Integer codeChanson) 	throws Exception;
+	
 	public 	void createNewSong( Chanson song ) 						throws Exception;
+	
+	public void deleteSong(Integer codeArtiste, Integer codeAlbum, Integer codeChanson) throws Exception;
 
 }

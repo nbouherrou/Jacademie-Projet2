@@ -88,9 +88,9 @@
 						<table class="table table-hover" id="bootstrap-table">
 							<thead>
 								<tr>
-									<th>#ID chanson</th>
-									<th>titre</th>
-									<th>duree</th>
+									<th>Code chanson</th>
+									<th>Titre</th>
+									<th>Duree</th>
 									<th>Supprimer</th>
 								</tr>
 							</thead>
@@ -101,7 +101,7 @@
 										<td><c:out value="${song.chansonID.idChanson}" /></td>
 										<td><c:out value="${song.titre}" /></td>
 										<td><c:out value="${song.dureeChanson}" /></td>
-										<td><a href=""><i class="fa fa-times"></i></a></td>
+										<td><a href="DeleteSong.do?codeArtiste=${song.chansonID.albumID.idArtiste}&codeAlbum=${song.chansonID.albumID.idAlbum}&codeChanson=${song.chansonID.idChanson}"><i class="fa fa-times"></i></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
