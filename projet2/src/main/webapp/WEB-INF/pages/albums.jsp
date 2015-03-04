@@ -89,7 +89,14 @@
 											</a>
 										</td>
 										<td><a href="updateAlbum.do?codeArtiste=${album.albumID.idArtiste}&codeAlbum=${album.albumID.idAlbum}"><i class="fa fa-pencil-square-o"></i></a></td>
-										<td><a href="DeleteAlbum.do?codeArtiste=${album.albumID.idArtiste}&codeAlbum=${album.albumID.idAlbum}"><i class="fa fa-times"></i></a></td>
+										<td>
+											DISABLED
+											<!--
+											<a href="DeleteAlbum.do?codeArtiste=${album.albumID.idArtiste}&codeAlbum=${album.albumID.idAlbum}">
+												<i class="fa fa-times"></i>
+											</a>
+											-->
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
